@@ -1,0 +1,44 @@
+﻿@model CarritoDeComprasMVC.Models.ProductoEditViewModel
+
+<h1 class="text-center mb-4">Editar Producto</h1>
+
+<div class="container">
+    <form asp-action="Edit" method="post" class="shadow p-4 rounded bg-light">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-floating mb-3">
+            <input asp-for="Nombre" class="form-control" placeholder="Nombre del producto" />
+            <label asp-for="Nombre">Nombre</label>
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Descripcion" class="form-control" placeholder="Descripción del producto" />
+            <label asp-for="Descripcion">Descripción</label>
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Precio" class="form-control" placeholder="Precio del producto" />
+            <label asp-for="Precio">Precio</label>
+            <span asp-validation-for="Precio" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Stock" class="form-control" placeholder="Cantidad en stock" />
+            <label asp-for="Stock">Stock</label>
+            <span asp-validation-for="Stock" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="ImagenUrl" class="form-control" placeholder="URL de la imagen" />
+            <label asp-for="ImagenUrl">Imagen URL</label>
+            <span asp-validation-for="ImagenUrl" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Guardar</button>
+    </form>
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CarritoDeComprasMVC.Models.Entity.Producto>
+
+<h1 class="text-center mb-4">Productos Esenciales</h1>
+
+<div class="container">
+
+    
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-6 col-md-4 col-lg-3 mb-4">
+                <div class="card shadow-sm h-100 text-center border-0">
+
+                    <!-- Imagen del Producto -->
+                    <div class="card-img-top p-3">
+                        <img src="@item.ImagenUrl" class="img-fluid" alt="@item.Nombre" style="height: 150px; object-fit: contain;">
+                    </div>
+
+                    <!-- Información del Producto -->
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nombre</h5>
+                        <p class="card-text text-primary" style="font-size: 1.2rem;">$@item.Precio</p>
+
+                        <!-- Botones de Acción en 3 Columnas -->
+                        <div class="row">
+                            <div class="col-4 d-flex justify-content-center">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
+                            </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                            </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Botón de Añadir al Carrito -->
+                        <form asp-action="AddToCart" asp-controller="Producto" method="post" class="mt-3">
+                            <input type="hidden" name="productId" value="@item.Id" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="btn btn-success btn-sm w-100">Añadir al Carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Botón de Crear Producto -->
+    <div class="mb-4 d-flex justify-content-center">
+        <a asp-action="Create" class="btn btn-primary">Crear Producto</a>
+    </div>
+</div>

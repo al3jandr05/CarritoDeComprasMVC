@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CarritoDeComprasMVC.Models.Entity.Orden>
+
+<h2 class="text-center mb-4">Historial de Compras</h2>
+
+<div class="container">
+    @foreach (var orden in Model)
+    {
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Orden #: @orden.Id</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Fecha:</strong> @orden.FechaCreacion.ToString("dd/MM/yyyy")</p>
+                <p><strong>Total de la Orden:</strong> @orden.Total.ToString("C")</p>
+
+                <div class="table-responsive">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio Unitario</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in orden.Items)
+                            {
+                                <tr>
+                                    <td>@item.Producto.Nombre</td>
+                                    <td>@item.Cantidad</td>
+                                    <td>@item.PrecioUnitario.ToString("C")</td>
+                                    <td>@item.PrecioTotal.ToString("C")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

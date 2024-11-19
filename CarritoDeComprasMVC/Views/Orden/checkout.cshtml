@@ -1,0 +1,40 @@
+﻿@model CarritoDeComprasMVC.Models.Entity.Orden
+
+<h2 class="text-center mb-4">Confirmación de Compra</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Items)
+        {
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="card shadow-sm h-100">
+                    <div class="row g-0 align-items-center">
+
+                        <!-- Imagen del Producto -->
+                        <div class="col-4 text-center p-2">
+                            <img src="@item.Producto.ImagenUrl" class="img-fluid" alt="@item.Producto.Nombre" style="height: 75px; object-fit: contain;">
+                        </div>
+
+                        <!-- Detalles del Producto -->
+                        <div class="col-8">
+                            <div class="card-body p-2">
+                                <h6 class="card-title">@item.Producto.Nombre</h6>
+                                <p class="card-text mb-1">Cantidad: <strong>@item.Cantidad</strong></p>
+                                <p class="card-text mb-1">Precio Unitario: <span class="text-primary">@item.PrecioUnitario.ToString("C")</span></p>
+                                <p class="card-text">Total: <span class="text-success">@item.PrecioTotal.ToString("C")</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Total General y Confirmación -->
+    <div class="text-center mt-4">
+        <p class="h5"><strong>Total de la Orden:</strong> @Model.Total.ToString("C")</p>
+        <form asp-action="ConfirmOrder" method="post" class="d-inline">
+            <button type="submit" class="btn btn-success btn-lg">Confirmar Compra</button>
+        </form>
+    </div>
+</div>

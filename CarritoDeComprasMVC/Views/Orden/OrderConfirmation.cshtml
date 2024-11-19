@@ -1,0 +1,17 @@
+﻿@model int
+
+<div class="container text-center mt-5">
+    <div class="card shadow-lg p-4 bg-light">
+        <h2 class="text-success fw-bold">¡Compra Confirmada!</h2>
+        <p class="mt-3" style="font-size: 1.2rem;">
+            Tu orden ha sido registrada exitosamente. <br />
+            <strong>Número de orden:</strong> <span class="text-primary">@Model</span>
+        </p>
+        <p class="text-secondary">Recibirás un correo con los detalles de tu pedido. Gracias por tu compra.</p>
+
+        <div class="mt-4">
+            <a asp-action="Historial" asp-controller="Orden" class="btn btn-primary btn-lg me-2">Ver Historial de Compras</a>
+            <a asp-action="Index" asp-controller="Producto" class="btn btn-secondary btn-lg">Seguir Comprando</a>
+        </div>
+    </div>
+</div>

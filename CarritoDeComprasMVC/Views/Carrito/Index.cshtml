@@ -1,0 +1,53 @@
+﻿@model CarritoDeComprasMVC.Models.Entity.Carrito
+
+<h2 class="text-center mb-4">Carrito de Compras</h2>
+
+<div class="container">
+    @foreach (var item in Model.CarritoItems)
+    {
+        <div class="card mb-3 shadow-sm">
+            <div class="row g-0 align-items-center">
+
+                <!-- Imagen del Producto -->
+                <div class="col-md-4 text-center p-3">
+                    <img src="@item.Producto.ImagenUrl" class="img-fluid" alt="@item.Producto.Nombre" style="height: 150px; object-fit: contain;">
+                </div>
+
+                <!-- Detalles del Producto -->
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Producto.Nombre</h5>
+
+                        <p class="card-text">Precio unitario: <span class="text-primary">@item.Producto.Precio.ToString("C")</span></p>
+                        <p class="card-text">Total: <span class="text-success">@item.PrecioTotal.ToString("C")</span></p>
+
+                        <!-- Formulario para actualizar la cantidad -->
+                        <form asp-action="UpdateQuantity" method="post" class="d-inline">
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <div class="form-floating d-inline-block" style="width: 80px;">
+                                <input type="number" name="quantity" value="@item.Cantidad" min="1" class="form-control" />
+                                <label for="quantity">Cantidad</label>
+                            </div>
+                            <button type="submit" class="btn btn-outline-primary btn-sm ms-2">Actualizar</button>
+                        </form>
+
+                        <!-- Botón para eliminar el elemento -->
+                        <form asp-action="RemoveItem" method="post" class="d-inline">
+                            <input type="hidden" name="itemId" value="@item.Id" />
+                            <button type="submit" class="btn btn-outline-danger btn-sm ms-2">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Opciones adicionales del carrito -->
+    <div class="text-center mt-4">
+        <form asp-action="EmptyCart" method="post" class="d-inline">
+            <button type="submit" class="btn btn-warning">Vaciar Carrito</button>
+        </form>
+        <a asp-action="Checkout" asp-controller="Orden" class="btn btn-success mx-2">Proceder a la Compra</a>
+        <a asp-action="Index" asp-controller="Producto" class="btn btn-secondary">Seguir Comprando</a>
+    </div>
+</div>

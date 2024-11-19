@@ -1,0 +1,12 @@
+﻿@model CarritoDeComprasMVC.Models.Entity.Producto
+
+<h1 class="text-center mb-4">Eliminar Producto</h1>
+
+<div class="container text-center">
+    <p>¿Estás seguro de que deseas eliminar el producto <strong>@Model.Nombre</strong>?</p>
+    <form asp-action="DeleteConfirmed" method="post" class="d-inline">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</div>
